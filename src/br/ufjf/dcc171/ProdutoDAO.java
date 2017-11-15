@@ -10,11 +10,20 @@ import java.util.List;
 
 public class ProdutoDAO {
 
-    public void criar(Produto prod) throws Exception {
+    private Connection conexao;
+    private PreparedStatement operacaoInsere;
+    private PreparedStatement operacaoListar;
+
+    public ProdutoDAO() throws Exception {
         Class.forName("org.apache.derby.jdbc.ClientDriver");
         String driverUrl = "jdbc:derby://localhost:1527/dcc171-2013-3";
-        Connection conexao = DriverManager.getConnection(driverUrl, "usuario", "senha");
-        PreparedStatement operacaoInsere = conexao.prepareStatement("INSERT INTO produto(nome, qtd, atualizado) VALUES(?,?,CURRENT_TIMESTAMP)");
+        conexao = DriverManager.getConnection(driverUrl, "usuario", "senha");
+        operacaoInsere = conexao.prepareStatement("INSERT INTO produto(nome, qtd, atualizado) VALUES(?,?,CURRENT_TIMESTAMP)");
+        operacaoListar = conexao.prepareStatement("SELECT nome, qtd FROM produto WHERE qtd > ? ORDER BY qtd DESC");
+
+    }
+
+    public void criar(Produto prod) throws Exception {
         operacaoInsere.clearParameters();
         operacaoInsere.setString(1, prod.getNome());
         operacaoInsere.setInt(2, prod.getQtd());
@@ -23,10 +32,6 @@ public class ProdutoDAO {
 
     public List<Produto> listarTodos() throws Exception {
         List<Produto> produtos = new ArrayList<>();
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-        String driverUrl = "jdbc:derby://localhost:1527/dcc171-2013-3";
-        Connection conexao = DriverManager.getConnection(driverUrl, "usuario", "senha");
-        PreparedStatement operacaoListar = conexao.prepareStatement("SELECT nome, qtd FROM produto WHERE qtd > ? ORDER BY qtd DESC");
         operacaoListar.clearParameters();
         operacaoListar.setInt(1, 0);
         ResultSet resultado = operacaoListar.executeQuery();
