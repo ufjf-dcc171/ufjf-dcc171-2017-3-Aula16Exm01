@@ -1,10 +1,8 @@
 package br.ufjf.dcc171;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +13,7 @@ public class ProdutoDAO {
     private PreparedStatement operacaoListar;
 
     public ProdutoDAO() throws Exception {
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
-        String driverUrl = "jdbc:derby://localhost:1527/dcc171-2013-3";
-        conexao = DriverManager.getConnection(driverUrl, "usuario", "senha");
+        conexao = ConexaoJavaDB.getConnection();
         operacaoInsere = conexao.prepareStatement("INSERT INTO produto(nome, qtd, atualizado) VALUES(?,?,CURRENT_TIMESTAMP)");
         operacaoListar = conexao.prepareStatement("SELECT nome, qtd FROM produto WHERE qtd > ? ORDER BY qtd DESC");
 
