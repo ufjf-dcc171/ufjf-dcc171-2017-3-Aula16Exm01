@@ -20,19 +20,26 @@ public class Aula16Exem01 {
             PreparedStatement operacaoListar = conexao.prepareStatement("SELECT nome, qtd FROM produto WHERE qtd > ? ORDER BY qtd DESC");
             Random rnd = new Random();
             for (int i = 0; i < 10; i++) {
+                Produto p = new Produto();
+                p.setNome("Produto " + rnd.nextInt(100));
+                p.setQtd(rnd.nextInt(10) + 1);
+                
                 operacaoInsere.clearParameters();
-                operacaoInsere.setString(1, "Produto " + rnd.nextInt(100));
-                operacaoInsere.setInt(2, rnd.nextInt(10) + 1);
+                operacaoInsere.setString(1, p.getNome() );
+                operacaoInsere.setInt(2, p.getQtd());
                 operacaoInsere.executeUpdate();
             }
             operacaoListar.clearParameters();
             operacaoListar.setInt(1, 0);
             ResultSet resultado = operacaoListar.executeQuery();
             while (resultado.next()) {
+                Produto p = new Produto();
+                p.setNome(resultado.getString(1));
+                p.setQtd(resultado.getInt(2));
                 System.out.println(
-                        resultado.getString(1)
+                        p.getNome()
                         + "\t\t"
-                        + resultado.getInt(2)
+                        + p.getQtd()
                 );
             }
 
