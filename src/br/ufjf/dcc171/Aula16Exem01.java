@@ -10,7 +10,7 @@ public class Aula16Exem01 {
     public static void main(String[] args) {
 
         try {
-            ProdutoDAO dao = new ProdutoDAO();
+            ProdutoDAO dao = new ProdutoDAOJDBC();
 
             Random rnd = new Random();
             for (int i = 0; i < 10; i++) {
