@@ -25,5 +25,10 @@ public class Produto {
         if(qtd<0) throw new Exception("A quantidade deve ser positiva!");
         this.qtd = qtd;
     }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "nome=" + nome + ", qtd=" + qtd + '}';
+    }
     
 }
