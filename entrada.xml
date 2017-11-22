@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<produto>
-    <nome>Produto via XML</nome>
-    <qtd>10</qtd>
-</produto>
+<produtos>
+    <produto>
+        <nome>Produto via XML</nome>
+        <qtd>10</qtd>
+    </produto>
+    <produto>
+        <nome>Produto 2 via XML</nome>
+        <qtd>20</qtd>
+    </produto>
+</produtos>

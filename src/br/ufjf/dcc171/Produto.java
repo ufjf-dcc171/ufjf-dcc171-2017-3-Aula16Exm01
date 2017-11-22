@@ -1,6 +1,9 @@
 
 package br.ufjf.dcc171;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Produto {
     private String nome;
     private Integer qtd;

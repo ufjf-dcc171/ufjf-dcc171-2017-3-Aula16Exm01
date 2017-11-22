@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<produto>
-    <nome>Produto 70</nome>
-    <qtd>8</qtd>
-</produto>
+<produtos>
+    <produto>
+        <nome>Produto 39</nome>
+        <qtd>8</qtd>
+    </produto>
+</produtos>
